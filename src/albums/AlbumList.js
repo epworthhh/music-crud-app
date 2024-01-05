@@ -3,7 +3,7 @@ import AlbumItem from './AlbumItem';
 
 const AlbumList = ({ albums, onDelete, onEdit }) => {
   return (
-    <div>
+    <div className='AlbumList'>
       <h2>Album List</h2>
       <ul>
         {albums.map((album) => (
