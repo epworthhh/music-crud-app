@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import AlbumList from './albums/AlbumList';
 import AlbumForm from './albums/AlbumForm';
+import albumsData from './mocks/albums';
 
 import './App.css';
 
 function App() {
-  const [albums, setAlbums] = useState([]);
+  const [albums, setAlbums] = useState(albumsData);
   const [editAlbum, setEditAlbum] = useState(null);
 
   const addAlbum = (album) => {
