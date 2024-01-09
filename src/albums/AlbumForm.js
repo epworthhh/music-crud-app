@@ -40,7 +40,7 @@ const AlbumForm = ({ onAdd, onEdit, editAlbum }) => {
 
   return (
     <form onSubmit={handleSubmit} className="App-form">
-      <Typography variant="h5">
+      <Typography variant="h5" gutterBottom>
         Album Form
       </Typography>
       <Grid container spacing={2} alignItems="center">

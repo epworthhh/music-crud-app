@@ -5,7 +5,7 @@ import { Grid, Typography } from '@mui/material';
 const AlbumList = ({ albums, onDelete, onEdit }) => {
   return (
     <Grid>
-      <Typography variant="h5">
+      <Typography variant="h5" gutterBottom>
         Album List
       </Typography>
       <Grid container spacing={2}>
