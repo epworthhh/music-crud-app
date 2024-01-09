@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Container, CssBaseline, Paper, Typography } from '@mui/material';
 import AlbumList from './albums/AlbumList';
 import AlbumForm from './albums/AlbumForm';
 import albumsData from './mocks/albums';
@@ -33,15 +34,16 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Music Album CRUD App</h1> 
-      </header>
-      <div>
-      <AlbumList albums={albums} onDelete={deleteAlbum} onEdit={editSelectedAlbum} />
-      <AlbumForm onAdd={addAlbum} onEdit={updateAlbum} editAlbum={editAlbum} />
-    </div>
-    </div>
+    <Container component="main" maxWidth="md">
+      <CssBaseline />
+      <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
+        <Typography variant="h3" style={{ textAlign: 'center', marginBottom: '42px' }}>
+          Music Album CRUD App
+        </Typography>
+        <AlbumList albums={albums} onDelete={deleteAlbum} onEdit={editSelectedAlbum} />
+        <AlbumForm onAdd={addAlbum} onEdit={updateAlbum} editAlbum={editAlbum} />
+      </Paper>
+    </Container>
   );
 }
 

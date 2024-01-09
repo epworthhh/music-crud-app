@@ -16,6 +16,11 @@ const albums = [
     title: 'IV',
     artist: 'BadBadNotGood',
   },
+  {
+    id: generateId(),
+    title: 'Blue Train',
+    artist: 'John Coltrane',
+  },
 ];
 
 export default albums;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button, Grid, TextField, Typography } from '@mui/material';
 import { generateId } from '../utils';
 
 const initialAlbumState = { title: '', artist: '' };
@@ -38,28 +39,39 @@ const AlbumForm = ({ onAdd, onEdit, editAlbum }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Title:
-        <input
-          type="text"
-          name="title"
-          value={album ? album.title : ''}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Artist:
-        <input
-          type="text"
-          name="artist"
-          value={album ? album.artist : ''}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <button type="submit">{editAlbum ? 'Update' : 'Add'}</button>
+    <form onSubmit={handleSubmit} className="App-form">
+      <Typography variant="h5">
+        Album Form
+      </Typography>
+      <Grid container spacing={2} alignItems="center">
+        <Grid item xs={5}>
+          <TextField
+            fullWidth
+            label="Title"
+            name="title"
+            value={album ? album.title : ''}
+            onChange={handleChange}
+            variant="outlined"
+            required
+          />
+        </Grid>
+        <Grid item xs={5}>
+          <TextField
+            fullWidth
+            label="Artist"
+            name="artist"
+            value={album ? album.artist : ''}
+            onChange={handleChange}
+            variant="outlined"
+            required
+            />
+        </Grid>
+        <Grid item xs={2}>
+          <Button type="submit" variant="contained" color="primary">
+            {editAlbum ? 'Update' : 'Add'}
+          </Button>
+        </Grid>
+      </Grid>
     </form>
   );
 };
