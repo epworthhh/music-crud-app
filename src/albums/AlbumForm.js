@@ -4,17 +4,42 @@ import { generateId } from '../utils';
 
 const initialAlbumState = { title: '', artist: '' };
 
-const AlbumForm = ({ onAdd, onEdit, editAlbum }) => {
+const AlbumForm = ({ onAdd, onEdit, editAlbum, isDuplicate }) => {
   const [album, setAlbum] = useState(initialAlbumState);
+  const [errors, setErrors] = useState(initialAlbumState);
+
+  useEffect(() => {
+    setErrors(initialAlbumState);
+  }, [album]);
 
   useEffect(() => {
     if (editAlbum) {
       setAlbum(editAlbum);
     } else {
-      // reset form if there's no editAlbum
       setAlbum(initialAlbumState);
     }
   }, [editAlbum]);
+
+  const validateInput = () => {
+    const newErrors = { title: '', artist: '' };
+
+    if (!album.title.trim()) {
+      newErrors.title = 'Title cannot be empty';
+    }
+
+    if (!album.artist.trim()) {
+      newErrors.artist = 'Artist cannot be empty';
+    }
+
+    if (isDuplicate(album)) {
+      newErrors.title = 'Album already exists';
+    }
+
+    setErrors(newErrors);
+
+    // Return true if there are no errors
+    return Object.values(newErrors).every((error) => !error);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,6 +48,10 @@ const AlbumForm = ({ onAdd, onEdit, editAlbum }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateInput()) {
+      return;
+    }
 
     if (editAlbum) {
       const updatedAlbum = {
@@ -33,7 +62,7 @@ const AlbumForm = ({ onAdd, onEdit, editAlbum }) => {
 
       onEdit(updatedAlbum);
     } else {
-      onAdd({...album, id: generateId() });
+      onAdd({ ...album, id: generateId() });
     }
     setAlbum(initialAlbumState); // reset form
   };
@@ -43,31 +72,35 @@ const AlbumForm = ({ onAdd, onEdit, editAlbum }) => {
       <Typography variant="h5" gutterBottom>
         Album Form
       </Typography>
-      <Grid container spacing={2} alignItems="center">
+      <Grid container spacing={2}>
         <Grid item xs={5}>
           <TextField
-            fullWidth
             label="Title"
             name="title"
             value={album ? album.title : ''}
             onChange={handleChange}
             variant="outlined"
-            required
+            margin="normal"
+            fullWidth
+            error={!!errors.title}
+            helperText={errors.title}
           />
         </Grid>
         <Grid item xs={5}>
           <TextField
-            fullWidth
             label="Artist"
             name="artist"
             value={album ? album.artist : ''}
             onChange={handleChange}
             variant="outlined"
-            required
-            />
+            margin="normal"
+            fullWidth
+            error={!!errors.artist}
+            helperText={errors.artist}
+          />
         </Grid>
         <Grid item xs={2}>
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary" style={{ marginTop: 25 }}>
             {editAlbum ? 'Update' : 'Add'}
           </Button>
         </Grid>

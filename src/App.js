@@ -33,6 +33,12 @@ function App() {
     setEditAlbum(null); // clear the editAlbum state after updating
   };
 
+  const isDuplicate = (newAlbum) => {
+    return albums.some(
+      (album) => album.title.toLowerCase() === newAlbum.title.toLowerCase()
+    );
+  };
+
   return (
     <Container component="main" maxWidth="md">
       <CssBaseline />
@@ -41,7 +47,7 @@ function App() {
           Music Album CRUD App
         </Typography>
         <AlbumList albums={albums} onDelete={deleteAlbum} onEdit={editSelectedAlbum} />
-        <AlbumForm onAdd={addAlbum} onEdit={updateAlbum} editAlbum={editAlbum} />
+        <AlbumForm onAdd={addAlbum} onEdit={updateAlbum} editAlbum={editAlbum} isDuplicate={isDuplicate} />
       </Paper>
     </Container>
   );
