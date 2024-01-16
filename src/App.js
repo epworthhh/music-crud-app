@@ -42,7 +42,7 @@ function App() {
   return (
     <Container component="main" maxWidth="md">
       <CssBaseline />
-      <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
+      <Paper elevation={3} style={{ padding: '20px', margin: '20px auto' }}>
         <Typography variant="h3" style={{ textAlign: 'center', marginBottom: '42px' }}>
           Music Album CRUD App
         </Typography>

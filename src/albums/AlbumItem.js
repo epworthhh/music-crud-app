@@ -11,7 +11,7 @@ const AlbumContainer = styled(Paper)(({ theme }) => ({
 
 const ButtonContainer = styled('div')(({ theme }) => ({
   marginTop: theme.spacing(2),
-  '& > button:first-child': {
+  '& > button:first-of-type': {
     marginRight: theme.spacing(1), // Add margin between buttons
   },
 }));

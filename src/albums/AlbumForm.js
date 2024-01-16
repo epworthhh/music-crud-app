@@ -73,7 +73,7 @@ const AlbumForm = ({ onAdd, onEdit, editAlbum, isDuplicate }) => {
         Album Form
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={5}>
+        <Grid item xs={12} md={5}>
           <TextField
             label="Title"
             name="title"
@@ -86,7 +86,7 @@ const AlbumForm = ({ onAdd, onEdit, editAlbum, isDuplicate }) => {
             helperText={errors.title}
           />
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={12} md={5}>
           <TextField
             label="Artist"
             name="artist"
@@ -99,7 +99,7 @@ const AlbumForm = ({ onAdd, onEdit, editAlbum, isDuplicate }) => {
             helperText={errors.artist}
           />
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={12} md={2}>
           <Button type="submit" variant="contained" color="primary" style={{ marginTop: 25 }}>
             {editAlbum ? 'Update' : 'Add'}
           </Button>
